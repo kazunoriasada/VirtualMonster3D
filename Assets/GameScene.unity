@@ -2101,7 +2101,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55779740}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -2143,7 +2143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62877e1b0c51748299b01aa2263055d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unityChan: {fileID: 1955806853}
+  unityChan: {fileID: 233807942}
 --- !u!136 &55779744
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6625,6 +6625,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unityChan: {fileID: 1955806853}
+--- !u!4 &233807942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400014, guid: 1db38da97b6ad094dbca967f13dd370f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1706265738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &233930422
 GameObject:
   m_ObjectHideFlags: 0
@@ -21992,6 +21998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magmadar
       objectReference: {fileID: 0}
+    - target: {fileID: 144852, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 415344, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -22039,8 +22049,11 @@ PrefabInstance:
     - target: {fileID: 9521604, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 84df64438e88540c0a1de9394bbab2aa,
-        type: 2}
+      objectReference: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
+    - target: {fileID: 9521604, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 073751e72dbf52c479d5697b2903b893, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0854521c94d51af44a9aef251c42b5a9, type: 3}
 --- !u!1 &797743549
@@ -47171,6 +47184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StoneMonster
       objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -47218,8 +47235,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 75a42447322d34e80b6e66193a6a4605,
-        type: 2}
+      objectReference: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
 --- !u!1 &1707309513
@@ -56068,7 +56084,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 510fb44ebc09e425093400d43dec2f65, type: 2}
+      objectReference: {fileID: 9100000, guid: e2cf68ff4b1ffda45a77f7307dd789b9, type: 2}
     - target: {fileID: 4587400505745564, guid: dfd3f8cbb59500946b5f981986c2a23d, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.18860352
