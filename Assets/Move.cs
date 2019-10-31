@@ -53,6 +53,7 @@ public class Move : MonoBehaviour
         // GetComponent<Animator> ().SetFloat ("X", _joystick.Position.x);
         // GetComponent<Animator> ().SetFloat ("Z", _joystick.Position.y);
 
+        //キャクターがプレイヤーについてくる
         if (lead)
         {
             //NavMeshAgentを止める
@@ -90,6 +91,9 @@ public class Move : MonoBehaviour
             //Agentの速度の二乗の数値でアニメーションを切り替える
             animator.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
+
+        //ついてくるキャラクターが坂を登れるようにする
+        
         
 	}
 

@@ -23,10 +23,14 @@ public class Following : MonoBehaviour
     
     void Update()
     {
-        //目的地と自分の位置との距離
+        //目的地と自分の位置との距離 = ユニティちゃんの位置 - モンスターの位置
         Vector3 dir = unityChan.transform.position - this.transform.position;
-        //目的地の位置
+        Debug.Log(dir);
+        //目的地の位置 = モンスターの位置 + ユニティちゃんとの距離
         Vector3 pos = this.transform.position + dir * 1.5f;
+
+        //モンスターの現在地
+        Vector3 mop = this.transform.position;
         //目的地の方を向く
         this.transform.rotation = Quaternion.LookRotation(dir);
         //目的地を指定する
@@ -36,5 +40,17 @@ public class Following : MonoBehaviour
         //Agentの速度の二乗の数値でアニメーションを切り替える
         animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
 
+         //ジャンプさせる
+         if (dir.y > 0)
+            {
+                mop.y += 1.3f;
+                transform.position = mop;
+            }
+        //距離が離れすぎたら、プレイヤーの元まで飛ぶ
+        if(dir.z > 7)
+        {
+           mop.z = unityChan.transform.position.z;
+           transform.position = mop;
+        }
     }
 }
