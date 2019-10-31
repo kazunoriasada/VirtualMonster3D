@@ -20,6 +20,7 @@ public class ChangeOrder : MonoBehaviour
         {
             //自分の手前のキャラクターの数字のため1を引く
             int moveNum = i - 1;
+            Debug.Log(moveNum);
             //0番目のキャラクターの場合は最後尾の数字になる
             //リストの要素数は1から始まり、リストの番号は0から
             //始まるので1を引く
@@ -45,37 +46,37 @@ public class ChangeOrder : MonoBehaviour
     void Update()
     {
         //スペースキーを押すと作動する
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //まず前のリーダーの操作方法を切り替える
-            move[leaderNum].lead = false;
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     //まず前のリーダーの操作方法を切り替える
+        //     move[leaderNum].lead = false;
 
-            //MoveスクリプトのTargetPos()メソッドで
-            //前のキャラの位置を取得させる
-            for (int i = 0; i < chara.Count; i++)
-            {
-                move[i].TargetPos();
-            }
+        //     //MoveスクリプトのTargetPos()メソッドで
+        //     //前のキャラの位置を取得させる
+        //     for (int i = 0; i < chara.Count; i++)
+        //     {
+        //         move[i].TargetPos();
+        //     }
 
-            //↑のfor文でそれぞれ取得した位置に移動させる
-            for (int i = 0; i < chara.Count; i++)
-            {
-                chara[i].transform.position
-                    = move[i].movePos;
-            }
+        //     //↑のfor文でそれぞれ取得した位置に移動させる
+        //     for (int i = 0; i < chara.Count; i++)
+        //     {
+        //         chara[i].transform.position
+        //             = move[i].movePos;
+        //     }
 
-            //リーダーの番号をひとつ上げる
-            leaderNum++;
-            //リーダーの番号がcharaリストの要素数と
-            //同じになったら最初に戻す
-            //リストの順番は0から始まり、要素数は1から始まるため
-            if (leaderNum >= chara.Count)
-            {
-                leaderNum = 0;
-            }
-            //新リーダーの操作方法を切り替える
-            move[leaderNum].lead = true;
-        }
+        //     //リーダーの番号をひとつ上げる
+        //     leaderNum++;
+        //     //リーダーの番号がcharaリストの要素数と
+        //     //同じになったら最初に戻す
+        //     //リストの順番は0から始まり、要素数は1から始まるため
+        //     if (leaderNum >= chara.Count)
+        //     {
+        //         leaderNum = 0;
+        //     }
+        //     //新リーダーの操作方法を切り替える
+        //     move[leaderNum].lead = true;
+        //}
     }
     
 }

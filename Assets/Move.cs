@@ -14,10 +14,17 @@ public class Move : MonoBehaviour
     //自分の前のキャラの位置を入れてそこにワープする
     public Vector3 movePos;
 
+    //先ほど作成したJoystick
+    [SerializeField]
+    private Joystick _joystick = null;
+    //移動速度
+    private const float SPEED = 0.1f;
+
     //移動スピード
     float speed = 2.5f;
     //方向転換のスピード
     float angleSpeed = 200;
+    
 
     //Animatorを収納する変数
     Animator animator;
@@ -36,11 +43,22 @@ public class Move : MonoBehaviour
 	
 	void Update () 
     {
-		if (lead)
+		//ジョイスティックの操作
+        // Vector3 pos = transform.position;
+
+        // pos.x += _joystick.Position.x * SPEED;
+        // pos.z += _joystick.Position.y * SPEED;
+
+        // transform.position = pos;
+        // GetComponent<Animator> ().SetFloat ("X", _joystick.Position.x);
+        // GetComponent<Animator> ().SetFloat ("Z", _joystick.Position.y);
+
+        if (lead)
         {
             //NavMeshAgentを止める
             agent.isStopped = true;
 
+            
             //WSキー、↑↓キーで移動する
             float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
             transform.position += transform.forward * z;
@@ -48,9 +66,11 @@ public class Move : MonoBehaviour
             //ADキー、←→キーで方向を替える
             float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * angleSpeed;
             transform.Rotate(Vector3.up * x);
+            
 
             //Agentの速度の二乗の数値でアニメーションを切り替える
             animator.SetFloat("Blend", z * 100);
+            
         }
         else
         {
@@ -70,6 +90,7 @@ public class Move : MonoBehaviour
             //Agentの速度の二乗の数値でアニメーションを切り替える
             animator.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
+        
 	}
 
     //別のクラスから呼び出して自分が移る位置を代入する
