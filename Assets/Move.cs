@@ -15,15 +15,17 @@ public class Move : MonoBehaviour
     public Vector3 movePos;
 
     //先ほど作成したJoystick
-    [SerializeField]
-    private Joystick _joystick = null;
-    //移動速度
-    private const float SPEED = 0.1f;
+    // [SerializeField]
+    // private Joystick _joystick = null;
+    // //移動速度
+    // private const float SPEED = 0.1f;
 
     //移動スピード
     float speed = 2.5f;
     //方向転換のスピード
     float angleSpeed = 200;
+
+    
     
 
     //Animatorを収納する変数
@@ -92,7 +94,6 @@ public class Move : MonoBehaviour
             animator.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
 
-        //ついてくるキャラクターが坂を登れるようにする
         
         
 	}

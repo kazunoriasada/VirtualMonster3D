@@ -12,6 +12,10 @@ public class Following : MonoBehaviour
     NavMeshAgent agent;
     //Animatorを収納する変数
     Animator animator;
+
+    //　ジャンプ力
+	[SerializeField]
+	private float jumpPower = 5f;
     
     void Start()
     {
@@ -40,17 +44,27 @@ public class Following : MonoBehaviour
         //Agentの速度の二乗の数値でアニメーションを切り替える
         animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
 
-         //ジャンプさせる
-         if (dir.y > 0)
-            {
-                mop.y += 1.3f;
-                transform.position = mop;
-            }
-        //距離が離れすぎたら、プレイヤーの元まで飛ぶ
-        if(dir.z > 7)
+         //ついてくるキャラクターが坂を登れるようにする
+        if(Input.GetButtonDown("Jump")) 
         {
-           mop.z = unityChan.transform.position.z;
-           transform.position = mop;
-        }
+			mop.y += jumpPower;
+            //agent.Warp(new Vector3(x, y, z));
+
+		}
+         //プレイヤーがジャンプしたら、合わせてジャンプする
+         
+         //距離に対して制御を入れる
+        //  if (dir.y > 0)
+        //     {
+        //         mop.y += 1.3f;
+        //         transform.position = mop;
+        //     }
+        // //距離が離れすぎたら、プレイヤーの元まで飛ぶ
+        // if(dir.z > 7)
+        // {
+        //    mop.z = unityChan.transform.position.z;
+        //    transform.position = mop;
+        //}
+
     }
 }
