@@ -91,7 +91,7 @@ public class Move : MonoBehaviour
             //目的地からどれくらい離れて停止するか
             agent.stoppingDistance = 3f;
             //Agentの速度の二乗の数値でアニメーションを切り替える
-            animator.SetFloat("Blend", agent.velocity.sqrMagnitude);
+            //animator.SetFloat("Blend", agent.velocity.sqrMagnitude);
         }
 
         

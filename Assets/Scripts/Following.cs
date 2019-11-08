@@ -29,7 +29,7 @@ public class Following : MonoBehaviour
     {
         //目的地と自分の位置との距離 = ユニティちゃんの位置 - モンスターの位置
         Vector3 dir = unityChan.transform.position - this.transform.position;
-        Debug.Log(dir);
+        //Debug.Log(dir);
         //目的地の位置 = モンスターの位置 + ユニティちゃんとの距離
         Vector3 pos = this.transform.position + dir * 1.5f;
 
@@ -42,7 +42,7 @@ public class Following : MonoBehaviour
         //目的地からどれくらい離れて停止するか
         agent.stoppingDistance = 3f;
         //Agentの速度の二乗の数値でアニメーションを切り替える
-        animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
+        //animator.SetFloat("Speed", agent.velocity.sqrMagnitude);
 
          //ついてくるキャラクターが坂を登れるようにする
         if(Input.GetButtonDown("Jump")) 
