@@ -7,11 +7,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     [RequireComponent(typeof (ThirdPersonCharacter))]
     public class ThirdPersonUserControl : MonoBehaviour
     {
+        //バトルシーン遷移のための列挙型
+        // public enum WarpCharaState
+        // {
+        //     normal,
+		//     goToWarpPoint,
+        // };
         private ThirdPersonCharacter m_Character; // A reference to the ThirdPersonCharacter on the object
         private Transform m_Cam;                  // A reference to the main camera in the scenes transform
         private Vector3 m_CamForward;             // The current forward direction of the camera
         private Vector3 m_Move;
-        private bool m_Jump;                      // the world-relative desired move direction, calculated from the camForward and user input.
+        private bool m_Jump;   
+        //バトルシーン遷移のための列挙型
+        // private WarpCharaState state;
+        // private Transform waitPoint;
+        // private Transform warpPoint;
+        // //ワープポイントでキャラクターを中央に移動させたり回転させたりするスピード
+        // public float goToWaitPointSpeed;                   
+    // the world-relative desired move direction, calculated from the camForward and user input.
 
         
         private void Start()
@@ -30,6 +43,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             // get the third person character ( this should never be null due to require component )
             m_Character = GetComponent<ThirdPersonCharacter>();
+            //ワープさせるためのソース
+            // state = WarpCharaState.normal;
         }
 
 
@@ -39,6 +54,31 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
             }
+        //    if (state == WarpCharaState.normal) 
+        //    { 
+        //        if (m_Character.isGrounded) 
+        //        {
+        //            velocity = Vector3.zero;
+        //            var input = new Vector3 (Input.GetAxis ("Horizontal"), 0f, Input.GetAxis ("Vertical"));
+        //            if (input.magnitude > 0f) 
+        //            {
+        //                transform.LookAt (transform.position + input);
+        //                velocity += transform.forward * walkSpeed;
+        //                animator.SetFloat ("Speed", 1f);
+        //            }
+        //            else 
+        //            {
+        //                animator.SetFloat ("Speed", 0f);
+        //            }
+
+        //        }         
+		//        velocity.y += Physics.gravity.y * Time.deltaTime;
+		//        m_Character.Move (velocity * Time.deltaTime);
+	    //    } 
+        //    else if (state == WarpCharaState.goToWarpPoint) 
+        //    {
+        //        GoToWarpWaitPoint ();
+        //    }
         }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //シーン遷移時に戦闘で使うデータを保存しておくファイルの作成
-[CreateAssetMenu(fileName = "BattleParameter", menuName = "CreateBattleParameter")]
+[CreateAssetMenu (fileName = "BattleParameter",menuName = "CreateBattleParameter")]
 public class BattleParam : ScriptableObject
 {
    //主人公パーティーメンバー
