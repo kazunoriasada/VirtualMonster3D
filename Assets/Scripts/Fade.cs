@@ -7,16 +7,6 @@ public class Fade : MonoBehaviour
 {
     public Transform EnemyPosition;
     public Transform PlayerPositon;
-    
-    /// <summary>フェード中の透明度</summary>
-	private float fadeAlpha = 0;
-	/// <summary>フェード中かどうか</summary>
-	private bool isFading = false;
-	/// <summary>フェード色</summary>
-	public Color fadeColor = Color.black;
-    /// <param name='interval'>暗転にかかる時間(秒)</param>///  
-    float time = 0;
-    float interval;  
 
     //死んだかどうか
     private bool isDead;
@@ -38,38 +28,20 @@ public class Fade : MonoBehaviour
     }
 
     
-    // Fadeの設定
-    public void  OnGUI() 
-    {
-        if (this.isFading) 
-        {
-            //色と透明度を更新して白テクスチャを描画 .
-            this.fadeColor.a = this.fadeAlpha;
-            GUI.color = this.fadeColor;
-            GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
-        }		
-
-    }
-    
-    public IEnumerator OnTriggerEnter(Collider col) 
+    void OnTriggerEnter(Collider col) 
     {
 			
         if(col.tag == "Enemy") 
         {
+            Debug.Log(Camera.main.gameObject.name);
+            Camera.main.gameObject.GetComponent<CameraFade>().FadeIn();
             
-            //だんだん暗く .
-		    this.isFading = true;
-		    while (time <= interval) 
-            {
-                this.fadeAlpha = Mathf.Lerp (0f, 1f, time / interval);      
-			    time += Time.deltaTime;
-			    yield return 0;
-
-            }
             
             //キャラクターの状態をワープ状態に変更
 			//col.GetComponent <WarpChara>().SetState(WarpChara.WarpCharaState.goToWarpPoint, transform, warpPoint);
             transform.position = EnemyPosition.position;
+            
+            Camera.main.gameObject.GetComponent<CameraFade>().FadeOut();
 		}
         if(col.tag == "Player")
         {
@@ -78,12 +50,12 @@ public class Fade : MonoBehaviour
             transform.position = PlayerPositon.position;
             transform.rotation = PlayerPositon.rotation;
 
-            //敵キャラの破壊
-            Destroy(gameObject,5f);
+            
             //アイテムのドロップ
             // if(Random.Range (0, 1) == 0) 
             // {
             //     Instantiate (dropItemObj, transform.position, transform.rotation);
+                
 
             // }
 				
@@ -99,16 +71,9 @@ public class Fade : MonoBehaviour
             // }
 			
         }
-        //だんだん明るく .
-		time = 0;
-		while (time <= interval) 
-        {
-			this.fadeAlpha = Mathf.Lerp (1f, 0f, time / interval);
-			time += Time.deltaTime;
-			yield return 0;
-		}
-		
-		this.isFading = false;
+
+        //敵キャラの破壊
+            //Destroy(gameObject,5f);
      
 	}
 
