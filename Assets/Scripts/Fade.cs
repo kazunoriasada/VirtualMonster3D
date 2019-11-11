@@ -8,75 +8,138 @@ public class Fade : MonoBehaviour
     public Transform EnemyPosition;
     public Transform PlayerPositon;
     
-    float alfa;
-    float speed = 0.01f;
+    /// <summary>フェード中の透明度</summary>
+	private float fadeAlpha = 0;
+	/// <summary>フェード中かどうか</summary>
+	private bool isFading = false;
+	/// <summary>フェード色</summary>
+	public Color fadeColor = Color.black;
+    /// <param name='interval'>暗転にかかる時間(秒)</param>///  
+    float time = 0;
+    float interval;  
+
+    //死んだかどうか
+    private bool isDead;
+    //落とすアイテムゲームオブジェクト
+    public GameObject dropItemObj;
+
+    
     //フェードスピード
-	public float fadeSpeed = 2.0f;
-    float red, green, blue;
+	//public float fadeSpeed = 2.0f;
 
-    public bool isFadeOut = false;  //フェードアウト処理の開始、完了を管理するフラグ
-	public bool isFadeIn = false;   //フェードイン処理の開始、完了を管理するフラグ
-
-    Image fadeImage;
     // Start is called before the first frame update
     void Start()
     {
-        fadeImage = GetComponent<Image> ();
+        // fadeImage = GetComponent<Image> ();
 		// red = fadeImage.color.r;
 		// green = fadeImage.color.g;
 		// blue = fadeImage.color.b;
 		// alfa = fadeImage.color.a;
     }
 
-    // Update is called once per frame
-    void OnTriggerEnter(Collider col) 
+    
+    // Fadeの設定
+    public void  OnGUI() 
     {
+        if (this.isFading) 
+        {
+            //色と透明度を更新して白テクスチャを描画 .
+            this.fadeColor.a = this.fadeAlpha;
+            GUI.color = this.fadeColor;
+            GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
+        }		
 
-        
+    }
+    
+    public IEnumerator OnTriggerEnter(Collider col) 
+    {
+			
         if(col.tag == "Enemy") 
         {
-			 if (isFadeOut)
-             {
-                 StartFadeOut ();
-             }
+            
+            //だんだん暗く .
+		    this.isFading = true;
+		    while (time <= interval) 
+            {
+                this.fadeAlpha = Mathf.Lerp (0f, 1f, time / interval);      
+			    time += Time.deltaTime;
+			    yield return 0;
+
+            }
+            
             //キャラクターの状態をワープ状態に変更
 			//col.GetComponent <WarpChara>().SetState(WarpChara.WarpCharaState.goToWarpPoint, transform, warpPoint);
             transform.position = EnemyPosition.position;
 		}
         if(col.tag == "Player")
         {
-            if (isFadeOut)
-             {
-                 StartFadeOut ();
-             }
             //キャラクターの状態をワープ状態に変更
 			//col.GetComponent <WarpChara>().SetState(WarpChara.WarpCharaState.goToWarpPoint, transform, warpPoint);
             transform.position = PlayerPositon.position;
             transform.rotation = PlayerPositon.rotation;
+
+            //敵キャラの破壊
+            Destroy(gameObject,5f);
+            //アイテムのドロップ
+            // if(Random.Range (0, 1) == 0) 
+            // {
+            //     Instantiate (dropItemObj, transform.position, transform.rotation);
+
+            // }
+				
+            //Instantiate<GameObject>(dropItemObj, transform.position + Vector3.up, Quaternion.identity);
+            
+            // if (!isDead) 
+            // {
+                
+            //     isDead = true;
+			//     //設定したアイテムを敵の1m上から落とす
+			//     Instantiate<GameObject>(dropItemObj, transform.position + Vector3.up, Quaternion.identity);
+
+            // }
+			
         }
+        //だんだん明るく .
+		time = 0;
+		while (time <= interval) 
+        {
+			this.fadeAlpha = Mathf.Lerp (1f, 0f, time / interval);
+			time += Time.deltaTime;
+			yield return 0;
+		}
+		
+		this.isFading = false;
      
 	}
-    // void Update()
-    // {
+
+    void Update()
+    {
        
     //     if (isFadeOut) 
     //     {
 	// 		StartFadeOut ();
 	// 	}
     // }
-    void StartFadeOut()
-    {
-		fadeImage.enabled = true;  // a)パネルの表示をオンにする
-		alfa += fadeSpeed;         // b)不透明度を徐々にあげる
-        Debug.Log("fadeimage");
-		SetAlpha ();               // c)変更した透明度をパネルに反映する
-		if(alfa >= 1)
-        {             // d)完全に不透明になったら処理を抜ける
-			isFadeOut = false;
-		}
+    // void StartFadeOut()
+    // {
+	// 	fadeImage.enabled = true;  // a)パネルの表示をオンにする
+	// 	alfa += fadeSpeed;         // b)不透明度を徐々にあげる
+    //     Debug.Log("fadeimage");
+	// 	SetAlpha ();               // c)変更した透明度をパネルに反映する
+	// 	if(alfa >= 1)
+    //     {             // d)完全に不透明になったら処理を抜ける
+	// 		isFadeOut = false;
+	// 	}
+	// }
+    // void SetAlpha()
+    // {
+	// 	fadeImage.color = new Color(red, green, blue, alfa);
 	}
-    void SetAlpha()
-    {
-		fadeImage.color = new Color(red, green, blue, alfa);
-	}
+    // public void OnDestroy()
+    // {
+    //     if(gameObject.tag == "Enemy") 
+    //     {}
+    //     Debug.Log("OnDestroy");
+    // }
+
 }
