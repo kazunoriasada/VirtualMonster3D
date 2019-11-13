@@ -36,10 +36,11 @@ public class CameraFade : MonoBehaviour
             // GUI.color = this.fadeColor;
             // GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), Texture2D.whiteTexture);
             //だんだん暗く .
-		this.isFading = true;
+		//this.isFading = true;
 		float time = 0;
 		while (time <= interval) 
         {
+            //Lerp(a,b) = aとbの中間の値を求める
             this.fadeAlpha = Mathf.Lerp (0f, 1f, time / interval);      
 			time += Time.deltaTime;
 
@@ -56,23 +57,27 @@ public class CameraFade : MonoBehaviour
     //float intervalとFadeOutWithTimerの(FadeOutの中身)
     public void FadeOut ()
 	{
-		StartCoroutine (FadeOutWithTimer ());
+		Debug.Log("FadeOut");
+        StartCoroutine (FadeOutWithTimer ());
 	}
     private IEnumerator FadeOutWithTimer ()
 	{
 		
-		//だんだん明るく .
+		Debug.Log("FadeOutWithTimer");
+        //だんだん明るく .
 		time = 0;
 		while (time <= interval) 
         {
-			yield return new WaitForSeconds(5.0f);
-            this.fadeAlpha = Mathf.Lerp (1f, 0f, time / interval);
-			time += Time.deltaTime;
+			//yield return new WaitForSeconds(0.1f);
+            this.fadeAlpha = Mathf.Lerp (1f, 0f,time/interval);
+			//time += Time.deltaTime;
+            time += Time.deltaTime;
+
             this.fadeColor.a = this.fadeAlpha;
             image.color = fadeColor;
-			//yield return 0;
+			yield return 0;
 		}
 		
-		this.isFading = false;
+		//this.isFading = false;
 	}
 }
