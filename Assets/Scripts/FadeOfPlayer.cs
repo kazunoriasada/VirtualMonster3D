@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerFade : MonoBehaviour
+public class FadeOfPlayer : MonoBehaviour
 {
     public Transform EnemyPosition;
     public Transform PlayerPositon;
+
+    //死んだかどうか
+    private bool isDead;
+    //落とすアイテムゲームオブジェクト
+    public GameObject dropItemObj;
 
     
     //フェードスピード
@@ -20,6 +25,7 @@ public class PlayerFade : MonoBehaviour
 		// green = fadeImage.color.g;
 		// blue = fadeImage.color.b;
 		// alfa = fadeImage.color.a;
+        Invoke("Update", 10f);
     }
 
     
@@ -38,6 +44,13 @@ public class PlayerFade : MonoBehaviour
             
             Camera.main.gameObject.GetComponent<CameraFade>().FadeOut();
 		}
+
+        if(col.tag =="PowerUp")
+        {
+             //Camera.main.gameObject.GetComponent<CameraFade>().FadeIn();
+             Vector3 ItemCharaP = new Vector3(0 ,1 ,10);
+
+        }
     //     if(col.tag == "Player")
     //     {
     //         //キャラクターの状態をワープ状態に変更
