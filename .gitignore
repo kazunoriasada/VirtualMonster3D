@@ -70,3 +70,11 @@ crashlytics-build.properties
 # MouseKnight
 [Aa]ssets/MouseKnight.meta
 
+# Skeleton
+[Aa]ssets/Skeleton.mat
+# ML-AgentMaster
+[Aa]ssets/ML-AgentMaster
+
+# ML-Agents
+[Aa]ssets/UnitySDK/Assets
+
