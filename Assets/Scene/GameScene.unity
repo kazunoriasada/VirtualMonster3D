@@ -70953,7 +70953,7 @@ PrefabInstance:
     - target: {fileID: 8981871890835431130, guid: 31ebfc4da31c747e4b4e115573d8adc1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1002.24
+      value: 1001
       objectReference: {fileID: 0}
     - target: {fileID: 8981871890835431130, guid: 31ebfc4da31c747e4b4e115573d8adc1,
         type: 3}
@@ -71010,7 +71010,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8981871892683672973, guid: 31ebfc4da31c747e4b4e115573d8adc1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 31ebfc4da31c747e4b4e115573d8adc1, type: 3}
 --- !u!1 &1241131740
 GameObject:
@@ -121157,16 +121158,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8981871892683672973, guid: 31ebfc4da31c747e4b4e115573d8adc1,
-        type: 3}
-      propertyPath: EnemyPosition
-      value: 
-      objectReference: {fileID: 372477755}
-    - target: {fileID: 8981871892683672973, guid: 31ebfc4da31c747e4b4e115573d8adc1,
-        type: 3}
-      propertyPath: PlayerPositon
-      value: 
-      objectReference: {fileID: 1308180354}
     - target: {fileID: 8981871891755562333, guid: 31ebfc4da31c747e4b4e115573d8adc1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -121177,5 +121168,15 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8981871892683672973, guid: 31ebfc4da31c747e4b4e115573d8adc1,
+        type: 3}
+      propertyPath: EnemyPosition
+      value: 
+      objectReference: {fileID: 372477755}
+    - target: {fileID: 8981871892683672973, guid: 31ebfc4da31c747e4b4e115573d8adc1,
+        type: 3}
+      propertyPath: PlayerPositon
+      value: 
+      objectReference: {fileID: 1308180354}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ebfc4da31c747e4b4e115573d8adc1, type: 3}
